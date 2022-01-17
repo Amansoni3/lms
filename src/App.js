@@ -11,6 +11,8 @@ import DisplayAllStudents from "./Components/Admin/DisplayAllStudents";
 import DisplayAllSubjects from "./Components/Admin/DisplayAllSubjects";
 import Units from "./Components/Admin/units";
 import DisplayAllUnits from "./Components/Admin/DisplayAllUnits";
+import DashboardLayout from "./Components/Admin/AdminDashboard"
+import AdminLogin from "./Components/Admin/AdminLogin";
 
 function App(props) {
   return (
@@ -29,6 +31,8 @@ function App(props) {
           <Route element={< DisplayAllSubjects />} path={"/displayallsubjects"} history={props.history}  />
           <Route element={< Units />} path={"/units"} history={props.history}  />
           <Route element={< DisplayAllUnits />} path={"/displayallunits"} history={props.history}  />
+          <Route element={< DashboardLayout />} path={"/admindashboard"} history={props.history}  />
+          <Route element={< AdminLogin />} path={"/adminlogin"} history={props.history}  />
         </Routes>
       </Router>
     </div>
