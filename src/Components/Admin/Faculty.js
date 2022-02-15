@@ -13,6 +13,7 @@ import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import DisplayAllFaculty from "./DisplayAllFaculty";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -111,9 +112,7 @@ export default function Faculty(props) {
             imageAlt: 'Custom image',
          })
       }
-      setTimeout(function() {
-         {window.location.reload(false)}
-      }, 2000);
+      
    }
 
 
@@ -213,6 +212,12 @@ export default function Faculty(props) {
                   <div style={{ fontSize: 20, fontWeight: 'bold', letterSpacing: 1, display: "flex", alignItems: "center", justifyContent: "center" }} >
                      <img src="/faculty.png" style={{ height: 50, width: 50, padding: 10 }} />
                      Faculty Interface
+
+                     <div style={{ marginLeft: 'auto' }}>
+                                <Button variant="contained" component="span" onClick={() => props.setView(<DisplayAllFaculty />)}>
+                                    List Faculty
+                                </Button>
+                            </div>
                   </div>
                </Grid>
 

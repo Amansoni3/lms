@@ -13,6 +13,7 @@ import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import DisplayAllUnits from "./DisplayAllUnits";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -153,16 +154,8 @@ export default function Units(props) {
                 imageAlt: 'Custom image',
             })
         }
-        setTimeout(function () {
-            { window.location.reload(false) }
-        }, 2000);
+        
     }
-
-
-
-
-
-
 
     return (
 
@@ -173,6 +166,12 @@ export default function Units(props) {
                         <div style={{ fontSize: 20, fontWeight: 'bold', letterSpacing: 1, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 10 }} >
                             <img src="/units.png" style={{ height: 50, width: 50, padding: 10 }} />
                             Units Details
+
+                            <div style={{ marginLeft: 'auto' }}>
+                                <Button variant="contained" component="span" onClick={() => props.setView(<DisplayAllUnits />)}>
+                                    List Units
+                                </Button>
+                            </div>
                         </div>
                     </Grid>
 

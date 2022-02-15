@@ -13,6 +13,7 @@ import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import DisplayAllSubjects from "./DisplayAllSubjects";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -151,9 +152,7 @@ export default function Subjects(props) {
                 imageAlt: 'Custom image',
             })
         }
-        setTimeout(function() {
-            {window.location.reload(false)}
-         }, 2000);
+        
     }
 
 
@@ -168,8 +167,15 @@ export default function Subjects(props) {
                         <div style={{ fontSize: 20, fontWeight: 'bold', letterSpacing: 1, display: "flex", alignItems: "center", justifyContent: "center",marginBottom:10 }} >
                         <img src="/subject.png" style={{ height: 50, width: 50, padding: 10 }} />
                             Subject Details
+
+                            <div style={{ marginLeft: 'auto' }}>
+                                <Button variant="contained" component="span" onClick={() => props.setView(<DisplayAllSubjects />)}>
+                                    List Subjects
+                                </Button>
+                            </div>
                         </div>
-                    </Grid>
+                        
+                          </Grid>
 
                     <Grid item xs={4} >
                         <FormControl fullWidth>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import MaterialTable from "material-table"
+import MaterialTable from '@material-table/core';
 import { makeStyles } from "@mui/styles";
 import { ServerURL, postData, postDataAndImage, getData } from "./FetchNodeServices";
 import Dialog from '@mui/material/Dialog';

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react"
-import MaterialTable from "material-table"
+import MaterialTable from '@material-table/core';
 import { makeStyles, styled } from "@mui/styles";
 import { ServerURL, postData, postDataAndImage, getData } from "./FetchNodeServices";
 import Dialog from '@mui/material/Dialog';
@@ -138,6 +138,7 @@ export default function DisplayAllUnits(props) {
     
 
     const handleEdit = (rowData) => {
+        
        setUnitId(rowData.unitid)
        setDepartment(rowData.departmentid)
        setCourses(rowData.courseid)
@@ -336,7 +337,7 @@ export default function DisplayAllUnits(props) {
         return (
 
             <MaterialTable
-                title="Simple Action Preview"
+                title="Units"
                 columns={[
                     { title: 'Unit Id', field: 'unitid' },
                     { title: 'Department Name', field: 'departmentname' },

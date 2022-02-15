@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import { ServerURL, postData, postDataAndImage, getData } from "./FetchNodeServices";
 import Swal from "sweetalert2";
-import {useNavigate} from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 
 function Copyright(props) {
     return (
@@ -31,39 +31,42 @@ function Copyright(props) {
 
 const theme = createTheme();
 
-export default function AdminLogin() {
-     
+export default function FacultyLogin() {
+
     var navigate = useNavigate()
+
     const [email, setEmail] = React.useState('')
     const [password, setPassword] = React.useState('')
-    const [message,setMessage] = React.useState('')
+    const [message, setMessage] = React.useState('')
 
     const handleSubmit = async () => {
 
-        var result = await postData('admin/checkadminlogin', { emailid: email, password: password })
+        var result = await postData('facultylogin/facultylogin', { emailid: email, password: password })
 
-        if (result.result) 
-        {
+        if (result.result) {
             Swal.fire({
                 position: 'center',
                 icon: 'success',
                 title: 'Login Successfull',
                 showConfirmButton: false,
                 timer: 1500
-              })
-            {navigate("/admindashboard")}
+            })
+
+
+           localStorage.setItem("SES_FACULTY",JSON.stringify(result.data))
            
+            navigate("/facultydashboard")
+
         }
-        else
-        {
+        else {
             Swal.fire({
                 position: 'center',
                 icon: 'error',
                 title: 'Your work has been saved',
                 showConfirmButton: false,
                 timer: 1500
-              })
-          
+            })
+
         }
 
 
@@ -126,7 +129,7 @@ export default function AdminLogin() {
                                 autoComplete="current-password"
                                 onChange={(event) => setPassword(event.target.value)}
                             />
-                            
+
                             <Button
                                 type="submit"
                                 fullWidth

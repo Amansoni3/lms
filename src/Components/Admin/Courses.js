@@ -13,6 +13,7 @@ import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import DisplayAllCourses from "./DisplayAllCourses";
 
 const useStyles = makeStyles((theme) => ({
 
@@ -44,12 +45,12 @@ export default function Courses(props) {
     const classes = useStyles()
 
     const [courseIcon, setCourseIcon] = useState({ byte: '', file: '/uploadicon.png' })
-    const[courseName,setCourseName] = useState('')
-    const[noSemester,setNoSemester] = useState('')
-    const[department,setDepartment] = useState('')
-    const[feePerSemester,setFeePerSemester] = useState('')
+    const [courseName, setCourseName] = useState('')
+    const [noSemester, setNoSemester] = useState('')
+    const [department, setDepartment] = useState('')
+    const [feePerSemester, setFeePerSemester] = useState('')
 
-    const[listDepartment,setListDepartment] = useState([])
+    const [listDepartment, setListDepartment] = useState([])
 
 
     const handleIconChange = (event) => {
@@ -62,62 +63,61 @@ export default function Courses(props) {
 
         var result = await getData("department/displayall")
         setListDepartment(result.result)
-     }
+    }
 
-     useEffect(function(){
+    useEffect(function () {
         fetchAllDepartments()
-     },[])
+    }, [])
 
-     const fillDepartment=()=>{
+    const fillDepartment = () => {
 
-    return(listDepartment.map((item)=>{
-       return(<MenuItem value={item.departmentid}>{item.departmentname}</MenuItem> )
-    }))  }   
+        return (listDepartment.map((item) => {
+            return (<MenuItem value={item.departmentid}>{item.departmentname}</MenuItem>)
+        }))
+    }
 
-    const handleDepartmentChange=(event)=>{
+    const handleDepartmentChange = (event) => {
         setDepartment(event.target.value)
-      }
+    }
 
 
-    const handleSubmit = async()=>{
-         
+    const handleSubmit = async () => {
+
         var formData = new FormData()
-        
-        formData.append('icon',courseIcon.byte)
-        formData.append('coursename',courseName)
-        formData.append('nosemester',noSemester)
-        formData.append('feepersemester',feePerSemester)
-        formData.append('departmentid',department)
+
+        formData.append('icon', courseIcon.byte)
+        formData.append('coursename', courseName)
+        formData.append('nosemester', noSemester)
+        formData.append('feepersemester', feePerSemester)
+        formData.append('departmentid', department)
 
         var result = await postDataAndImage("courses/addcourses", formData)
 
         if (result.result) {
-           Swal.fire({
-              title: 'LMS',
-              text: 'Courses Submitted Succesfully',
-              imageUrl: '/lms.png',
-              imageWidth: 150,
-              imageHeight: 150,
-              icon: 'success',
-              imageAlt: 'Custom image',
-           })
-           
+            Swal.fire({
+                title: 'LMS',
+                text: 'Courses Submitted Succesfully',
+                imageUrl: '/lms.png',
+                imageWidth: 150,
+                imageHeight: 150,
+                icon: 'success',
+                imageAlt: 'Custom image',
+            })
+
         }
         else {
-           Swal.fire({
-              title: 'LMS',
-              text: 'Failed to Submit Courses',
-              imageUrl: '/lms.png',
-              imageWidth: 150,
-              imageHeight: 150,
-              icon: 'error',
-              imageAlt: 'Custom image',
-           })
+            Swal.fire({
+                title: 'LMS',
+                text: 'Failed to Submit Courses',
+                imageUrl: '/lms.png',
+                imageWidth: 150,
+                imageHeight: 150,
+                icon: 'error',
+                imageAlt: 'Custom image',
+            })
         }
 
-        setTimeout(function() {
-            {window.location.reload(false)}
-         }, 2000);
+       
     }
 
     return (
@@ -129,6 +129,12 @@ export default function Courses(props) {
                         <div style={{ fontSize: 25, fontWeight: 'bold', letterSpacing: 1, display: "flex", alignItems: "center", justifyContent: "center", marginBottom: 20 }} >
 
                             Course Interface
+                            <div style={{ marginLeft: 'auto' }}>
+                                <Button variant="contained" component="span" onClick={() => props.setView(<DisplayAllCourses />)}>
+                                    List Courses
+                                </Button>
+                            </div>
+
                         </div>
 
                     </Grid>
@@ -159,34 +165,34 @@ export default function Courses(props) {
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                 value={department}
+                                value={department}
                                 label="Department"
                                 onChange={handleDepartmentChange}
                             >
                                 {fillDepartment()}
-                                
+
                             </Select>
                         </FormControl>
                     </Grid>
                     <Grid item xs={6} >
-                  <TextField variant='outlined' fullWidth label='Course Name' value={courseName} onChange={(event) => setCourseName(event.target.value)} />
-               </Grid>
-               <Grid item xs={6} >
-                  <TextField variant='outlined' fullWidth label='Number of Semester' value={noSemester} onChange={(event) => setNoSemester(event.target.value)} />
-               </Grid>
-               <Grid item xs={6} >
-                  <TextField variant='outlined' fullWidth label='Per Semester Fees' value={feePerSemester}  onChange={(event) => setFeePerSemester(event.target.value)} />
-               </Grid>
+                        <TextField variant='outlined' fullWidth label='Course Name' value={courseName} onChange={(event) => setCourseName(event.target.value)} />
+                    </Grid>
+                    <Grid item xs={6} >
+                        <TextField variant='outlined' fullWidth label='Number of Semester' value={noSemester} onChange={(event) => setNoSemester(event.target.value)} />
+                    </Grid>
+                    <Grid item xs={6} >
+                        <TextField variant='outlined' fullWidth label='Per Semester Fees' value={feePerSemester} onChange={(event) => setFeePerSemester(event.target.value)} />
+                    </Grid>
 
-               <Grid item xs={6}>
-                    <Button variant="contained" onClick={() => handleSubmit() } color="success" fullWidth component="span">
-                                Save Details
-                     </Button>
+                    <Grid item xs={6}>
+                        <Button variant="contained" onClick={() => handleSubmit()} color="success" fullWidth component="span">
+                            Save Details
+                        </Button>
                     </Grid>
                     <Grid item xs={6}>
-                    <Button onClick={() => window.location.reload(false)} variant="contained" type="reset" fullWidth component="span" color="error">
-                                Reset All
-                     </Button>
+                        <Button onClick={() => window.location.reload(false)} variant="contained" type="reset" fullWidth component="span" color="error">
+                            Reset All
+                        </Button>
                     </Grid>
 
 

@@ -1,38 +1,24 @@
-import Department from "./Components/Admin/Department";
-import DisplayAllDepartment from "./Components/Admin/DisplayAllDepartment";
-import Faculty from "./Components/Admin/Faculty"; 
 import {BrowserRouter as Router , Route,Routes} from "react-router-dom"
-import DisplayAllFaculty from "./Components/Admin/DisplayAllFaculty";
-import Courses from "./Components/Admin/Courses";
-import Subjects from "./Components/Admin/Subjects";
-import DisplayAllCourses from "./Components/Admin/DisplayAllCourses";
-import Students from "./Components/Admin/Students";
-import DisplayAllStudents from "./Components/Admin/DisplayAllStudents";
-import DisplayAllSubjects from "./Components/Admin/DisplayAllSubjects";
-import Units from "./Components/Admin/units";
-import DisplayAllUnits from "./Components/Admin/DisplayAllUnits";
-import DashboardLayout from "./Components/Admin/AdminDashboard"
+import Createset from "./Components/Admin/Createset"
 import AdminLogin from "./Components/Admin/AdminLogin";
+import Dashboard from "./Components/Admin/AdminDashboard";
+import FacultyDashboard from "./Components/Admin/FacultyDashboard";
+import FacultyLogin from "./Components/Admin/FacultyLogin";
+import DisplayAllCreateset from "./Components/Admin/DisplayAllCreateset";
 
 function App(props) {
+  
   return (
     <div>
       <Router>
         <Routes>
-          <Route element={< Department />} path={"/department"} history={props.history}  />
-          <Route element={< DisplayAllDepartment />} path={"/displayalldepartment"} history={props.history}  />
-          <Route element={< Faculty />} path={"/faculty"} history={props.history}  />
-          <Route element={< DisplayAllFaculty />} path={"/displayallfaculty"} history={props.history}  />
-          <Route element={< Courses />} path={"/courses"} history={props.history}  />
-          <Route element={< Subjects />} path={"/subjects"} history={props.history}  />
-          <Route element={< DisplayAllCourses />} path={"/displayallcourses"} history={props.history}  />
-          <Route element={< Students />} path={"/students"} history={props.history}  />
-          <Route element={< DisplayAllStudents />} path={"/displayallstudents"} history={props.history}  />
-          <Route element={< DisplayAllSubjects />} path={"/displayallsubjects"} history={props.history}  />
-          <Route element={< Units />} path={"/units"} history={props.history}  />
-          <Route element={< DisplayAllUnits />} path={"/displayallunits"} history={props.history}  />
-          <Route element={< DashboardLayout />} path={"/admindashboard"} history={props.history}  />
+
+          <Route element={< Dashboard />} path={"/admindashboard"} history={props.history}  />
           <Route element={< AdminLogin />} path={"/adminlogin"} history={props.history}  />
+          <Route element={< Createset />} path={"/createset"} history={props.history}  />
+          <Route element={< FacultyDashboard />} path={"/facultydashboard"} history={props.history}  />
+          <Route element={< FacultyLogin />} path={"/facultylogin"} history={props.history}  />
+          
         </Routes>
       </Router>
     </div>

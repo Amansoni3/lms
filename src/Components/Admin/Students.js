@@ -13,6 +13,7 @@ import FormLabel from '@mui/material/FormLabel';
 import InputLabel from '@mui/material/InputLabel';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import DisplayAllStudents from "./DisplayAllStudents";
 
 
 const useStyles = makeStyles((theme) => ({
@@ -335,11 +336,6 @@ const fillCourses = () => {
             imageAlt: 'Custom image',
          })
       }
-
-      setTimeout(function() {
-         {window.location.reload(false)}
-      }, 2000);
-      
       
    }
 
@@ -357,6 +353,12 @@ const fillCourses = () => {
                   <div style={{ fontSize: 20, fontWeight: 'bold', letterSpacing: 1, display: "flex", alignItems: "center", justifyContent: "center",fontStyle:'italic' }} >
                      <img src="/student.png" style={{ height: 50, width: 50, padding: 10 }} />
                      <u>Students Interface</u>
+
+                     <div style={{ marginLeft: 'auto' }}>
+                                <Button variant="contained" component="span" onClick={() => props.setView(<DisplayAllStudents />)}>
+                                    List Students
+                                </Button>
+                            </div>
                   </div>
                </Grid>
 
